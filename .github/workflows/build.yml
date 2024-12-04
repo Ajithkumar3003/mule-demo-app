@@ -34,5 +34,5 @@ jobs:
           mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
           -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}" \
-          -Danypoint.platform.client_id="${{secrets.ANYPOINT_PLATFORM_CLIENT_ID}}" \
-          -Danypoint.platform.client_secret="${{secrets.ANYPOINT_PLATFORM_CLIENT_SECRET}}"
+          -Danypoint.platform.client_id="${{ secrets.ANYPOINT_PLATFORM_CLIENT_ID }}" \
+          -Danypoint.platform.client_secret="${{ secrets.ANYPOINT_PLATFORM_CLIENT_SECRET }}"
