@@ -4,7 +4,7 @@
 
 	<groupId>73537153-ddd4-4182-aec6-2d6880059206</groupId>
 	<artifactId>mule-demo-app</artifactId>
-	<version>1.0.10</version>
+	<version>1.0.11</version>
 	<packaging>mule-application</packaging>
 
 	<name>mule-demo-app</name>
@@ -45,6 +45,7 @@
 							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
 						</deploymentSettings>
 						<properties>
+							<env>qa</env>
 							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
 							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
 						</properties>
