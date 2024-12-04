@@ -4,7 +4,7 @@
 
 	<groupId>73537153-ddd4-4182-aec6-2d6880059206</groupId>
 	<artifactId>mule-demo-app</artifactId>
-	<version>1.0.9</version>
+	<version>1.0.10</version>
 	<packaging>mule-application</packaging>
 
 	<name>mule-demo-app</name>
@@ -108,6 +108,13 @@
 			<artifactId>mule-oauth2-provider-module</artifactId>
 			<version>1.1.0</version>
 			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>73537153-ddd4-4182-aec6-2d6880059206</groupId>
+			<artifactId>mule-demo</artifactId>
+			<version>1.0.1</version>
+			<classifier>raml</classifier>
+			<type>zip</type>
 		</dependency>
 	</dependencies>
 	<distributionManagement>
