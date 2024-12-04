@@ -23,6 +23,13 @@ jobs:
         with:
           distribution: "zulu"
           java-version: 8
+          
+      - name: Increment version in pom.xml
+        run: |
+          CURRENT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          NEW_VERSION=$(echo $CURRENT_VERSION | awk -F. '{print $1"."$2"."$3+1}')
+          mvn versions:set -Dversion=$NEW_VERSION
+          mvn versions:commit    
       
       - name: Publish to Exchange
         run: |
