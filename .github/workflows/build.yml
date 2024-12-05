@@ -23,12 +23,31 @@ jobs:
         with:
           distribution: "zulu"
           java-version: 8  
-      
+
+      - name: Increment version in pom.xml
+        run: |
+          # Extract current version
+          CURRENT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          
+          # Increment version
+          mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} versions:commit
+          
+          # Capture the new version
+          VERSION_NUMBER=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          
+          # Commit the updated pom.xml
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add pom.xml
+          git commit -m "Incremented version to $VERSION_NUMBER [skip ci]"
+          git push origin main
+          
       - name: Publish to Exchange
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests \
           -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
+
       - name: Deploy to CloudHub 2.0
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
