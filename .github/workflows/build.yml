@@ -36,8 +36,8 @@ jobs:
           VERSION_NUMBER=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           
           # Commit the updated pom.xml
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config user.name "Ajithkumar3003"
+          git config user.email "ajithsugu12@gmail.com"
           git add pom.xml
           git commit -m "Incremented version to $VERSION_NUMBER [skip ci]"
           git push origin main
