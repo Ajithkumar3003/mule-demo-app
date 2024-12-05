@@ -47,16 +47,16 @@ jobs:
           echo "Extracting current connector version from pom.xml..."
           CURRENT_VERSION=$(grep -A1 '<artifactId>mule-http-connector</artifactId>' pom.xml | grep '<version>' | sed -e 's/<version>//' -e 's/<\/version>//' | xargs)
           echo "Current version: $CURRENT_VERSION"
-
+          
           echo "Fetching latest version from Maven Central..."
-          LATEST_VERSION=$(curl -s "https://repo1.maven.org/maven2/org/mule/connectors/mule-connector-name/maven-metadata.xml" | grep -oPm1 "(?<=<latest>)[^<]+")
+          LATEST_VERSION=$(curl -s "https://repo1.maven.org/maven2/org/mule/connectors/mule-http-connector/maven-metadata.xml" | grep -oPm1 "(?<=<latest>)[^<]+")
           echo "Latest version: $LATEST_VERSION"
-
+          
           if [ "$CURRENT_VERSION" != "$LATEST_VERSION" ]; then
             echo "Error: MuleSoft connector is outdated. Current: $CURRENT_VERSION, Latest: $LATEST_VERSION"
             exit 1
           fi
-
+          
           echo "Connector is up-to-date."
           
       - name: Publish to Exchange
