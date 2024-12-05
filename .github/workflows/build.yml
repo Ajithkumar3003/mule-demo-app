@@ -48,8 +48,8 @@ jobs:
           CURRENT_VERSION=$(grep -A1 '<artifactId>mule-http-connector</artifactId>' pom.xml | grep '<version>' | sed -e 's/<version>//' -e 's/<\/version>//' | xargs)
           echo "Current version: $CURRENT_VERSION"
           
-          echo "Fetching latest version from Maven Central..."
-          LATEST_VERSION=$(curl -s "https://repo1.maven.org/maven2/org/mule/connectors/mule-http-connector/maven-metadata.xml" | grep -oPm1 "(?<=<latest>)[^<]+")
+          echo "Fetching latest version from MuleSoft repository..."
+          LATEST_VERSION=$(curl -s "https://repository.mulesoft.org/nexus/content/repositories/releases/org/mule/connectors/mule-http-connector/maven-metadata.xml" | grep -oPm1 "(?<=<release>)[^<]+")
           echo "Latest version: $LATEST_VERSION"
           
           if [ "$CURRENT_VERSION" != "$LATEST_VERSION" ]; then
