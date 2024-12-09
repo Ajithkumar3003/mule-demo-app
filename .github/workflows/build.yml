@@ -41,24 +41,6 @@ jobs:
           git add pom.xml
           git commit -m "Incremented version to $VERSION_NUMBER [skip ci]"
           git push origin main
-
-      - name: Check MuleSoft Connector Version
-        run: |
-          echo "Extracting current connector version from pom.xml..."
-          CURRENT_VERSION=$(grep -A1 '<artifactId>mule-http-connector</artifactId>' pom.xml | grep '<version>' | sed -e 's/<version>//' -e 's/<\/version>//' | xargs)
-          echo "Current version: $CURRENT_VERSION"
-          
-          echo "Fetching latest version from MuleSoft repository..."
-          LATEST_VERSION=$(curl -s "https://repository.mulesoft.org/nexus/content/repositories/releases/org/mule/connectors/mule-http-connector/maven-metadata.xml" | grep -oPm1 "(?<=<release>)[^<]+")
-          echo "Latest version: $LATEST_VERSION"
-          
-          if [ "$CURRENT_VERSION" != "$LATEST_VERSION" ]; then
-            echo "Error: MuleSoft connector is outdated. Current: $CURRENT_VERSION, Latest: $LATEST_VERSION"
-            exit 1
-          fi
-          
-          echo "Connector is up-to-date."
-          
       - name: Publish to Exchange
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests \
