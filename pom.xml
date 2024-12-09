@@ -13,6 +13,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<mule.version>4.6.1</mule.version>
+		<env>qa</env>
+		<target>Cloudhub-US-East-2</target>
+		<server>Repository</server>
+		<releaseChannel>LTS</releaseChannel>
+		<uri>https://anypoint.mulesoft.com</uri>
+		<provider>MC</provider>
 
 		<app.runtime>4.6.1</app.runtime>
 		<mule.maven.plugin.version>4.1.1</mule.maven.plugin.version>
@@ -33,21 +39,21 @@
 				<configuration>
 					<classifier>mule-application</classifier>
 					<cloudhub2Deployment>
-						<uri>https://anypoint.mulesoft.com</uri>
-						<provider>MC</provider>
-						<environment>qa</environment>
-						<target>Cloudhub-US-East-2</target>
-						<server>Repository</server>
+						<uri>${uri}</uri>
+						<provider>${provider}</provider>
+						<environment>${env}</environment>
+						<target>${target}</target>
+						<server>${server}</server>
 						<muleVersion>${mule.version}</muleVersion>
 						<applicationName>${project.artifactId}</applicationName>
-						<releaseChannel>LTS</releaseChannel>
+						<releaseChannel>${releaseChannel}</releaseChannel>
 						<replicas>1</replicas>
 						<vCores>0.1</vCores>
 						<deploymentSettings>
 							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
 						</deploymentSettings>
 						<properties>
-							<env>qa</env>
+							<env>${env}</env>
 							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
 							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
 						</properties>
